@@ -1,0 +1,38 @@
+services:
+  # Base de datos PostgreSQL
+  postgres:
+    image: postgres:17-alpine
+    container_name: fittrack-db
+    environment:
+      POSTGRES_DB: fittrack
+      POSTGRES_USER: fittrack
+      POSTGRES_PASSWORD: fittrack
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # Backend Spring Boot (se construye con Dockerfile propio)
+  backend:
+    build: ./backend
+    container_name: fittrack-backend
+    environment:
+      DB_USER: fittrack
+      DB_PASSWORD: fittrack
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/fittrack
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  # Frontend React (build de producción servido con nginx)
+  frontend:
+    build: ./frontend
+    container_name: fittrack-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

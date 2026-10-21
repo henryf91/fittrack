@@ -1,0 +1,348 @@
+/* ============================================================
+   FitTrack — estilos generales
+   ============================================================ */
+
+:root {
+  --bg: #0f1420;
+  --surface: #1a2233;
+  --surface-2: #232d42;
+  --border: #2e3a52;
+  --text: #e8ecf4;
+  --muted: #8b95a8;
+  --accent: #4f8cff;
+  --accent-hover: #3d7de0;
+  --danger: #e05252;
+  --success: #3ecf8e;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg, var(--bg));
+  color: var(--text, #e8ecf4);
+  background: #0f1420;
+  color: #e8ecf4;
+}
+
+#root {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* ---------- Header / nav ---------- */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Botones ---------- */
+
+button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: var(--accent-hover, #3d7ae8);
+  background: #3d7ae8;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Formularios ---------- */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--muted, #8b95a8);
+  color: #8b95a8;
+  font-weight: 500;
+}
+
+input,
+textarea,
+select {
+  background: #1a2233;
+  border: 1px solid #2e3a4e;
+  border-radius: var(--radius);
+  color: #e8ecf4;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+/* ---------- Tarjetas / secciones ---------- */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: #1a2233;
+  border: 1px solid #2e3a4e;
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4f9cf9;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #8b95a8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Gráfica ---------- */
+
+.chart-section {
+  background: #1a2233;
+  border: 1px solid #2e3a4e;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.chart-section h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  color: #8b95a8;
+  font-weight: 600;
+}
+
+/* ---------- Listas ---------- */
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+li {
+  background: #1a2233;
+  border: 1px solid #2e3a4e;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.meta {
+  color: #8b95a8;
+  font-size: 0.85rem;
+}
+
+/* ---------- Estados de carga / error ---------- */
+
+.loading,
+.error {
+  padding: 24px;
+  text-align: center;
+  color: #8b95a8;
+}
+
+.error {
+  color: #e05252;
+}
+
+/* ---------- Formularios de página completa (auth) ---------- */
+
+.auth-page {
+  max-width: 380px;
+  margin: 48px auto;
+  padding: 32px;
+  background: #1a2233;
+  border: 1px solid #2e3a4e;
+  border-radius: var(--radius);
+}
+
+.auth-page h1 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.auth-page button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.error-message {
+  background: rgba(224, 82, 82, 0.15);
+  border: 1px solid rgba(224, 82, 82, 0.4);
+  color: #f0a0a0;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+/* ---------- Utilidades ---------- */
+
+.muted {
+  color: #8b95a8;
+  font-size: 0.9rem;
+}
+
+/* ---------- Rutinas ---------- */
+
+.draft-exercises {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.draft-exercise {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #232d42;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.draft-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 8px;
+}
+
+.routine-exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.routine-exercise-item {
+  background: #232d42;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  color: #8b95a8;
+  justify-content: flex-start;
+}
+
+/* ---------- Progresión ---------- */
+.progression-section {
+  background: #1a2233;
+  border: 1px solid #2e3a4e;
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progression-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progression-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  background: #232d42;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.progression-date {
+  color: #8b95a8;
+  font-size: 0.85rem;
+  min-width: 90px;
+}
+
+.progression-setsreps {
+  font-weight: 700;
+  color: #4f9cf9;
+}
+
+.progression-notes {
+  color: #8b95a8;
+  font-size: 0.85rem;
+}
+
+.muted {
+  color: #8b95a8;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,25 @@
+# Node / frontend
+node_modules/
+dist/
+*.log
+
+# Java / backend
+target/
+*.class
+
+# Coda (sesiones del agente)
+.coda/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Entornos y secretos
+.env
+.env.local
+*.pem
+
+# IDEs
+.idea/
+.vscode/
+*.iml

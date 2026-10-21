@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: fittrack-backend
+
+  # Conexión a PostgreSQL (las variables vienen de variables de entorno)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fittrack
+    username: ${DB_USER:fittrack}
+    password: ${DB_PASSWORD:fittrack}
+
+  # JPA: valida el esquema pero no lo modifica (Flyway lo gestiona)
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+# Configuración JWT (en producción, el secret viene de variable de entorno)
+jwt:
+  secret: ${JWT_SECRET:fittrack-dev-secret-change-me-0123456789abcdef}
+  expiration-ms: ${JWT_EXPIRATION_MS:86400000}   # 24 horas
+
+logging:
+  level:
+    org.hibernate.SQL: debug
