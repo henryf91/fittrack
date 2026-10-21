@@ -54,6 +54,12 @@ export interface ProgressionEntry {
   weightKg: number | null
 }
 
+/** Volumen agregado por grupo muscular (coincide con MuscleGroupVolume del backend). */
+export interface MuscleGroupVolume {
+  muscleGroup: string
+  exercises: number
+}
+
 export const workoutsApi = {
   findAll: () => apiClient.get<WorkoutSession[]>('/api/workouts'),
 
@@ -66,6 +72,9 @@ export const workoutsApi = {
   stats: () => apiClient.get<WorkoutStats>('/api/workouts/stats'),
 
   volume: () => apiClient.get<DailyVolume[]>('/api/workouts/volume'),
+
+  volumeByMuscleGroup: () =>
+    apiClient.get<MuscleGroupVolume[]>('/api/workouts/volume-by-muscle-group'),
 
   progression: (exerciseId: number) =>
     apiClient.get<ProgressionEntry[]>(`/api/workouts/progression/${exerciseId}`),

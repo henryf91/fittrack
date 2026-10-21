@@ -2,6 +2,7 @@ package com.fittrack.service;
 
 import com.fittrack.dto.WorkoutDtos.CreateSessionRequest;
 import com.fittrack.dto.WorkoutDtos.DailyVolume;
+import com.fittrack.dto.WorkoutDtos.MuscleGroupVolume;
 import com.fittrack.dto.WorkoutDtos.ProgressionEntry;
 import com.fittrack.dto.WorkoutDtos.SessionExerciseResponse;
 import com.fittrack.dto.WorkoutDtos.SessionResponse;
@@ -23,11 +24,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 
 /**
  * Lógica de negocio de sesiones de entrenamiento.
@@ -195,6 +198,29 @@ public class WorkoutService {
                 .map(s -> new DailyVolume(
                         s.getSessionDate(),
                         s.getExercises().size()))
+                .toList();
+    }
+
+    /**
+     * Volumen por grupo muscular: cuenta cuántos ejercicios entrenan cada
+     * grupo (muscleGroups es "pecho, triceps" — se separa por comas).
+     * Un ejercicio con varios grupos cuenta para cada uno de ellos.
+     */
+    @Transactional(readOnly = true)
+    public List<MuscleGroupVolume> getVolumeByMuscleGroup() {
+        Long userId = currentUser().getId();
+
+        return sessionRepository.findByUserIdOrderBySessionDateDesc(userId).stream()
+                .flatMap(s -> s.getExercises().stream())
+                .map(we -> we.getExercise().getMuscleGroups())
+                .filter(groups -> groups != null && !groups.isBlank())
+                .flatMap(groups -> Arrays.stream(groups.split(",")))
+                .map(String::trim)
+                .filter(group -> !group.isEmpty())
+                .collect(Collectors.groupingBy(group -> group, Collectors.counting()))
+                .entrySet().stream()
+                .map(entry -> new MuscleGroupVolume(entry.getKey(), entry.getValue()))
+                .sorted(Comparator.comparingLong(MuscleGroupVolume::exercises).reversed())
                 .toList();
     }
 

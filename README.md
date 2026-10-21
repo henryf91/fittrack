@@ -11,6 +11,8 @@
 
 FitTrack is a complete gym-tracking application: JWT authentication, an exercise library, workout session logging, reusable routine templates, and statistics with interactive charts — all deployed with Docker Compose.
 
+![FitTrack screenshot](docs/screenshot.png)
+
 ## ✨ Features
 
 - **🔐 Authentication** — register/login with JWT (Spring Security, BCrypt, stateless sessions)

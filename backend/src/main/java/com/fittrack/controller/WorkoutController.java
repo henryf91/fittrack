@@ -61,6 +61,12 @@ public class WorkoutController {
         return workoutService.getWeeklyVolume();
     }
 
+    /** GET /api/workouts/volume-by-muscle-group — ejercicios por grupo muscular. */
+    @GetMapping("/volume-by-muscle-group")
+    public java.util.List<com.fittrack.dto.WorkoutDtos.MuscleGroupVolume> volumeByMuscleGroup() {
+        return workoutService.getVolumeByMuscleGroup();
+    }
+
     /** POST /api/workouts/from-routine/{routineId} — crea una sesión de hoy desde una rutina. */
     @PostMapping("/from-routine/{routineId}")
     @ResponseStatus(HttpStatus.CREATED)

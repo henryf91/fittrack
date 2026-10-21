@@ -4,6 +4,7 @@ import { workoutsApi, type CreateSessionInput, type SessionExerciseInput } from 
 import { exercisesApi } from '../api/exercisesApi'
 import WeeklyVolumeChart from '../components/WeeklyVolumeChart'
 import ProgressionChart from '../components/ProgressionChart'
+import MuscleGroupChart from '../components/MuscleGroupChart'
 import { Link } from 'react-router-dom'
 
 /**
@@ -29,6 +30,12 @@ export default function WorkoutsPage() {
   const volume = useQuery({
     queryKey: ['workouts', 'volume'],
     queryFn: workoutsApi.volume,
+  })
+
+  // Volumen por grupo muscular para la segunda gráfica
+  const muscleGroupVolume = useQuery({
+    queryKey: ['workouts', 'volume-by-muscle-group'],
+    queryFn: workoutsApi.volumeByMuscleGroup,
   })
 
   // Biblioteca para el selector de ejercicios
@@ -142,6 +149,13 @@ export default function WorkoutsPage() {
         <section className="chart-section">
           <h2>Volumen diario (últimas 8 semanas)</h2>
           <WeeklyVolumeChart data={volume.data} />
+        </section>
+      )}
+
+      {muscleGroupVolume.data && (
+        <section className="chart-section">
+          <h2>Volumen por grupo muscular</h2>
+          <MuscleGroupChart data={muscleGroupVolume.data} />
         </section>
       )}
 

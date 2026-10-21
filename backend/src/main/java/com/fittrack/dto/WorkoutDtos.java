@@ -59,6 +59,12 @@ public class WorkoutDtos {
             long exercises) {
     }
 
+    /** Volumen agregado por grupo muscular: ejercicios que lo entrenan. */
+    public record MuscleGroupVolume(
+            String muscleGroup,
+            long exercises) {
+    }
+
     /** Una entrada del historial de progresión de un ejercicio. */
     public record ProgressionEntry(
             java.time.LocalDate date,
