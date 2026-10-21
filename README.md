@@ -7,7 +7,7 @@
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 ![Docker](https://img.shields.io/badge/Docker-Compose-blue)
-![CI](https://github.com/YOUR_USER/fittrack/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/henryf91/fittrack/actions/workflows/ci.yml/badge.svg)
 
 FitTrack is a complete gym-tracking application: JWT authentication, an exercise library, workout session logging, reusable routine templates, and statistics with interactive charts — all deployed with Docker Compose.
 
